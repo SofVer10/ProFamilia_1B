@@ -4,6 +4,7 @@ import registerPatientsController from "../controllers/registerPatientsControlle
 const router = express.Router();
 
 router.route("/")
-.post(registerPatientsController.registerpatients);
+.post(registerPatientsController.registerPatient);
+router.route("/verifyCodeEmail").post(registerPatientsController.verifyCodeEmail)
 
 export default router;
