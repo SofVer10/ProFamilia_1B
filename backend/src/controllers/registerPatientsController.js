@@ -2,6 +2,8 @@ import jsonwebtoken from "jsonwebtoken";//Token
 import bcrypt from "bcryptjs"; //encriptar
 import nodemailer from "nodemailer"; //enviar correo
 import crypto from "crypto"; // código aleatorio
+import cookieParser from 'cookie-parser';
+
  
 import patientsModel from "../models/Patients.js"
 import { config } from "../confing.js"; 
@@ -54,7 +56,7 @@ config.JWT.secret,
 {expiresIn: "2H"}
     )
     //4- Funcion flecha
-res.cookie("VerificationToken", tokenCode, {maxAge: 2*60*60*1000}) //esos números significa que solo durará 2 horas la cookie
+res.cookies("VerificationToken", tokenCode, {maxAge: 2*60*60*1000}) //esos números significa que solo durará 2 horas la cookie
  
 
 // correo
@@ -101,7 +103,7 @@ registerPatientsController.verifyCodeEmail = async (req, res) => {
 const {verificationCode} = req.body;
  
 //Obtengo el token que contiene el código de verificación
-const token =req.cookies.VerificationToken;
+const token = req.cookies.VerificationToken
  
 try {
 //Verificar y decodificar el token

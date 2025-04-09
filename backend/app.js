@@ -12,6 +12,7 @@ import cookieParser from "cookie-parser";
 
 
 const app = express();
+app.use(cookieParser())
 
 app.use(express.json());
 
@@ -22,5 +23,6 @@ app.use("/api/registerDoctor", registerDoctorRoutes);
 app.use("/api/registerPatient", registerPatientRoutes);
 app.use("/api/login", loginRoutes);
 app.use("/api/logout", logoutRoutes);
+
 
 export default app;
