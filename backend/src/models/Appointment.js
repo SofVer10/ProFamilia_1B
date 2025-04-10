@@ -9,37 +9,31 @@
 
 */
 
-import { Schema, model } from "mongoose";
+import mongoose from "mongoose";
 
-const appointmentSchema = new Schema({
+const appointmentSchema = new mongoose.Schema({
     date: {
-        type: String,
-        require: true,
-        maxLength: 15
+        type: Date,
+        required: true
     },
     hour: {
         type: String,
-        require: true,
-        maxLength: 10
+        required: true
     },
     reason: {
         type: String,
-        require: true,
-        maxLength: 100
+        required: true
     },
-    idDoctor:{ 
-        type: Schema.Types.ObjectId,
-        ref: "Doctors",
-        requiere: true
+    idDoctor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Doctors", // Asegúrate que el nombre coincida con tu modelo de doctores
+        required: true
     },
-    idPatient:{ 
-        type: Schema.Types.ObjectId,
-        ref: "Patients",
-        requiere: true
+    idPatient: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Patient", // Este nombre debe coincidir con tu modelo de pacientes
+        required: true
     }
-},{
-    timestamps: true,
-    strict: false
-})
+});
 
-export default model("Appointment", appointmentSchema)
+export default mongoose.model("Appointment", appointmentSchema);

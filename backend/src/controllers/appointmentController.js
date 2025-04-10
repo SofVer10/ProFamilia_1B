@@ -1,11 +1,10 @@
 const appointmentController = {};
 import appointmentModel from "../models/Appointment.js";
-import patientsModel from "../models/Patients.js";
-import doctorModel from "../models/Doctors.js";
+
 
 //S E L E C T
 appointmentController.getAppointment = async (req, res) => {
-    const appointment = await appointmentModel.find().patientsModel.populate("idPatient");
+    const appointment = await appointmentModel.find().populate("idPatient");
     res.json(appointment)
 }
 
